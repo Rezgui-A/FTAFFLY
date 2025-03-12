@@ -1,0 +1,37 @@
+<div class="manager-container">
+    <!-- Left Navbar -->
+    <div class="left-navbar">
+      <button (click)="showSection('dashboard')">DASHBOARD</button>
+      <button (click)="showSection('employees')">EMPLOYEES</button>
+      <button (click)="showSection('request-leave')">REQUEST LEAVE</button>
+      <button (click)="showSection('work-reports')">WORK REPORTS</button>
+    </div>
+  
+    <div class="main-content">
+      <!-- Header Navbar -->
+      <div class="header-navbar">
+        <div class="header-icons">
+          <span class="notification-icon">🔔</span>
+          <span class="message-icon">✉️</span>
+          <div class="profile-icon-container">
+            <span class="profile-icon" (click)="toggleProfileMenu()">👤</span>
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu" *ngIf="isProfileMenuOpen">
+              <button (click)="showSection('add-employee-form')">Add Employee</button>
+              <button (click)="logout()">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Dynamic Content -->
+      <div class="dynamic-content">
+        <app-dashboard *ngIf="currentSection === 'dashboard'"></app-dashboard>
+        <app-employees *ngIf="currentSection === 'employees'"></app-employees>
+        <app-request-leave *ngIf="currentSection === 'request-leave'"></app-request-leave>
+        <app-work-reports *ngIf="currentSection === 'work-reports'"></app-work-reports>
+        <app-add-employee-form *ngIf="currentSection === 'add-employee-form'"></app-add-employee-form>
+
+      </div>
+    </div>
+  </div>

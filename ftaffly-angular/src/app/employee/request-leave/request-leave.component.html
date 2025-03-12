@@ -1,0 +1,51 @@
+<div class="request-leave">
+    <h2>Request Leave</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="fromDate">From Date</label>
+        <input type="date" id="fromDate" [(ngModel)]="leaveRequest.fromDate" name="fromDate" required>
+      </div>
+      <div class="form-group">
+        <label for="toDate">To Date</label>
+        <input type="date" id="toDate" [(ngModel)]="leaveRequest.toDate" name="toDate" required>
+      </div>
+      <div class="form-group">
+        <label for="leaveType">Leave Type</label>
+        <select id="leaveType" [(ngModel)]="leaveRequest.leaveType" name="leaveType" required>
+          <option value="Earned Leave">Earned Leave</option>
+          <option value="Sick Leave">Sick Leave</option>
+          <option value="Casual Leave">Casual Leave</option>
+          <option value="Leave Without Pay">Leave Without Pay</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="reason">Reason</label>
+        <textarea id="reason" [(ngModel)]="leaveRequest.reason" name="reason" required></textarea>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  
+    <h2>Leave Request History</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>From</th>
+          <th>To</th>
+          <th>Leave Type</th>
+          <th>Reason</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of leaveRequests">
+          <td>{{ request.fromDate }}</td>
+          <td>{{ request.toDate }}</td>
+          <td>{{ request.leaveType }}</td>
+          <td>{{ request.reason }}</td>
+          <td [ngClass]="{'pending': request.status === 'Pending', 'approved': request.status === 'Approved', 'rejected': request.status === 'Rejected'}">
+            {{ request.status }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

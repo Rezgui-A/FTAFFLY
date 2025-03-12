@@ -1,0 +1,39 @@
+<div>
+    <h1>Attendance</h1>
+    <div>
+      <p>Employee ID: {{ employeeId }}</p>
+      <p>Email: {{ email }}</p>
+      <h2>Elapsed Time: {{ formatTime(timeCounter) }}</h2>
+      <button (click)="checkIn()" [disabled]="isCheckedIn">Check In</button>
+      <button (click)="checkOut()" [disabled]="!isCheckedIn">Check Out</button>
+    </div>
+    <div class="metrics-container">
+        <div class="metric-card">
+          <h3>Days Registered</h3>
+          <p>{{ daysRegistered }}</p>
+        </div>
+        <div class="metric-card">
+          <h3>Absence Days</h3>
+          <p>{{ absenceDays }}</p>
+        </div>
+        <div class="metric-card">
+          <h3>Attendance Rate</h3>
+          <p>{{ attendanceRate | number: '1.2-2' }}%</p>
+        </div>
+        <div class="metric-card">
+          <h3>Total Time Worked</h3>
+          <p>{{ totalTimeWorkedInHours | number: '1.2-2' }} hours</p>
+        </div>
+      </div>
+
+      <div class="daily-status-container">
+        <div *ngFor="let day of getDailyStatus()" class="daily-status-card">
+          <h3>{{ day.date }}</h3>
+          <p [ngClass]="{ 'present': day.status === 'PRESENT', 'absent': day.status === 'ABSENT' }">
+            {{ day.status }}
+          </p>
+          <p>Total Hours: {{ day.hoursWorked | number: '1.2-2' }}</p>
+        </div>
+      </div>
+
+  </div>

@@ -1,0 +1,16 @@
+<div class="dashboard">
+  <h2>Manager Dashboard</h2>
+  <div class="metrics-container">
+    <!-- Triangle 1: Total Employees -->
+    <div class="metric-triangle" [ngStyle]="{ 'border-bottom-color': '#FF5733' }">
+      <span>Total Employees: {{ totalEmployees }}</span>
+    </div>
+
+    <!-- Triangle 2: Active Employees -->
+    <div class="metric-triangle" [ngStyle]="{ 'border-bottom-color': '#33FF57' }">
+      <span>Active Employees: {{ activeEmployees }}</span>
+    </div>
+
+
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="work-report-container">
+    <div class="upload-section">
+      <label for="file-upload" class="upload-label">
+        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+        <span>Upload Work Report</span>
+      </label>
+      <input id="file-upload" type="file" (change)="onFileSelected($event)" />
+    </div>
+  
+    <!-- Display uploaded files -->
+    <div *ngIf="uploadedFiles.length > 0" class="uploaded-files">
+      <h3>Uploaded Files</h3>
+      <ul>
+        <li *ngFor="let file of uploadedFiles">
+          <div class="file-info">
+            <p><strong>Name:</strong> {{ file.fileName }}</p>
+            <p><strong>Size:</strong> {{ file.fileSize | fileSize }}</p>
+            <p><strong>Last Modified:</strong> {{ file.lastModified | date: 'medium' }}</p>
+          </div>
+          <button class="download-button" (click)="downloadFile(file.id, file.fileName)">Download</button>
+        </li>
+      </ul>
+    </div>
+  </div>

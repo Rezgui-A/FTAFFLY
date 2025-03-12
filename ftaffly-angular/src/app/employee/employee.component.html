@@ -1,0 +1,34 @@
+<div class="employee-container">
+    <!-- Left Navbar -->
+    <div class="left-navbar">
+      <button (click)="showSection('attendance')">ATTENDANCE</button>
+      <button (click)="showSection('work-report')">WORK REPORT</button>
+      <button (click)="showSection('request-leave')">REQUEST LEAVE</button>
+    </div>
+  
+    <div class="main-content">
+      <!-- Header Navbar -->
+      <div class="header-navbar">
+        <div class="header-icons">
+          <span class="notification-icon">🔔</span>
+          <span class="message-icon">✉️</span>
+          <div class="profile-icon-container">
+            <span class="profile-icon" (click)="toggleProfileMenu()">👤</span>
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu" *ngIf="isProfileMenuOpen">
+              <button (click)="logout()">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Dynamic Content -->
+      <div class="dynamic-content">
+        <app-attendance
+          *ngIf="currentSection === 'attendance'"
+        ></app-attendance>
+        <app-work-report *ngIf="currentSection === 'work-report'"></app-work-report>
+        <app-request-leave *ngIf="currentSection === 'request-leave'"></app-request-leave>
+      </div>
+    </div>
+  </div>
